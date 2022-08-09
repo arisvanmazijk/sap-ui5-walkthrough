@@ -28,7 +28,7 @@
             class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
          <VBox>
             <VBox class="sapUiSmallMargin" >
-               <Label text="Seconds until session expiration" />
+               <Label text="{i18n>timeOutText}" />
                <StepInput
                   id="expirationInput"
                   value="3"
@@ -38,7 +38,7 @@
             </VBox>
             <Button
                press="handleOpenDialog"
-               text="Open Dialog"
+               text="{i18n>timeOutOpenDialog}"
                class="sapUiSmallMarginBegin" />
          </VBox>            
       </content>
