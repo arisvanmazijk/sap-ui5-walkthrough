@@ -2,7 +2,8 @@ sap.ui.define([
     "sap/ui/core/UIComponent",
     "sap/ui/model/json/JSONModel",
     "sap/ui/Device",
-], function (UIComponent, JSONModel, Device) {
+    "sap/m/IllustrationPool"
+], function (UIComponent, JSONModel, Device, IllustrationPool) {
     "use strict";
     return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
         metadata: {
@@ -28,6 +29,14 @@ sap.ui.define([
 
             // create the views based on the url/hash
             this.getRouter().initialize();
+
+            var oTntSet = {
+                setFamily: "tnt",
+                setURI: sap.ui.require.toUrl("sap/tnt/themes/base/illustrations")
+            };
+    
+            // register tnt illustration set
+            IllustrationPool.registerIllustrationSet(oTntSet, false);
         },
 
         getContentDensityClass : function () {
@@ -39,6 +48,6 @@ sap.ui.define([
 				}
 			}
 			return this._sContentDensityClass;
-		}       
+		}
     });
 });
