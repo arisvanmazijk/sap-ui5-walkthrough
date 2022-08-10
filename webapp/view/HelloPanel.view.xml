@@ -25,22 +25,7 @@
             width="60%"/>
          <FormattedText
             htmlText="Hello {/recipient/name}"
-            class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>
-         <VBox>
-            <VBox class="sapUiSmallMargin" >
-               <Label text="{i18n>timeOutText}" />
-               <StepInput
-                  id="expirationInput"
-                  value="3"
-                  min="2"
-                  max="9"
-                  width="3rem" />
-            </VBox>
-            <Button
-               press="handleOpenDialog"
-               text="{i18n>timeOutOpenDialog}"
-               class="sapUiSmallMarginBegin" />
-         </VBox>            
+            class="sapUiSmallMargin sapThemeHighlight-asColor myCustomText"/>          
       </content>
    </Panel>
 </mvc:View>

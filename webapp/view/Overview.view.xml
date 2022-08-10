@@ -9,6 +9,21 @@
 					press=".onOpenDialog"/>
 		</headerContent>
 		<content>
+		    <VBox>
+            <VBox class="sapUiSmallMargin" >
+               <Label text="{i18n>timeOutText}" />
+               <StepInput
+                  id="expirationInput"
+                  value="3"
+                  min="2"
+                  max="9"
+                  width="3rem" />
+            </VBox>
+            <Button
+               press="handleOpenDialog"
+               text="{i18n>timeOutOpenDialog}"
+               class="sapUiSmallMarginBegin" />
+         </VBox>  
 			<mvc:XMLView viewName="sap.ui.demo.walkthrough.view.HelloPanel"/>
 			<mvc:XMLView viewName="sap.ui.demo.walkthrough.view.InvoiceList"/>
 		</content>
