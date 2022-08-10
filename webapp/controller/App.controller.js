@@ -25,7 +25,7 @@ sap.ui.define([
          var self = this;
          this.intervalHandle = setInterval(function () {
             self.handleOpenDialog();
-         }, 15000);
+         }, 10000);
       },
 
       handleOpenDialog: function () {
@@ -77,7 +77,7 @@ sap.ui.define([
       },
 
       _startCounter: function () {
-         this.iSeconds = this.getView().byId("expirationInput").getValue();
+         this.iSeconds = 5;
          this._onCounterStart();
          clearInterval(this.oTimer);
          this.oTimer = setInterval(this._decrementCounter.bind(this), 1000);
