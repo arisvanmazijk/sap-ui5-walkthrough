@@ -19,6 +19,10 @@ sap.ui.define([
          oView.setModel(this.oModel);
 
          this.setTimeOutDialog();
+
+         var oEventBus = this.getOwnerComponent().getEventBus();
+
+         oEventBus.subscribe("resetTimeOutdialog", this.resetTimeOutdialog, this);
       },
 
       setTimeOutDialog: function () {
@@ -26,6 +30,11 @@ sap.ui.define([
          this.intervalHandle = setInterval(function () {
             self.handleOpenDialog();
          }, 10000);
+      },
+
+      resetTimeOutdialog: function () {
+         clearInterval(this.intervalHandle);
+         this.setTimeOutDialog();
       },
 
       handleOpenDialog: function () {

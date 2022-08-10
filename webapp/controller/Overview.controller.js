@@ -9,15 +9,7 @@ sap.ui.define([
        onInit: function () {
           this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
  
-       },
- 
-       setTimeOutDialog: function () {
-          var self = this;
-          this.intervalHandle = setInterval(function () {
-             self.handleOpenDialog();
-          }, 10000);
        }
-
  
     });
  });
