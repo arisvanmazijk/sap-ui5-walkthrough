@@ -18,21 +18,18 @@ sap.ui.define([
 
          oView.setModel(this.oModel);
 
-         this.setTimeOutDialog();
-
-         var oEventBus = this.getOwnerComponent().getEventBus();
-
-         oEventBus.subscribe("resetTimeOutdialog", this.resetTimeOutdialog, this);
+         var invoiceModel = this.getOwnerComponent().getModel("invoice");
+         invoiceModel.attachRequestCompleted(this.resetTimeOutDialog, this);
       },
 
       setTimeOutDialog: function () {
          var self = this;
          this.intervalHandle = setInterval(function () {
             self.handleOpenDialog();
-         }, 10000);
+         }, 15000);
       },
 
-      resetTimeOutdialog: function () {
+      resetTimeOutDialog: function () {
          clearInterval(this.intervalHandle);
          this.setTimeOutDialog();
       },
@@ -64,11 +61,9 @@ sap.ui.define([
          this._stopCounter();
       },
 
-      onSignIn: function () {
-         this.onDialogClose();
-
-         // Insert your Sign In Logic here...
-
+      onContinueWork: function () {
+         this._oDialog.close();
+         this._stopCounter();        
       },
 
       onExit: function () {

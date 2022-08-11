@@ -14,9 +14,6 @@ sap.ui.define([
 			var sMsg = oBundle.getText("helloMsg", [sRecipient]);
 			// show message
 			MessageToast.show(sMsg);
-
-  			var oEventBus = this.getOwnerComponent().getEventBus();
-  			oEventBus.publish("resetTimeOutdialog");
 		},
 
 		onOpenDialog: function () {
