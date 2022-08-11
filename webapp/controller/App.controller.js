@@ -62,6 +62,7 @@ sap.ui.define([
       },
 
       onContinueWork: function () {
+         this.getOwnerComponent().getModel("invoice").refresh();
          this._oDialog.close();
          this._stopCounter();        
       },
