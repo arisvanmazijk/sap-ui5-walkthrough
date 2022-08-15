@@ -8,15 +8,17 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.walkthrough.controller.InvoiceList", {
+
 		formatter: formatter,
+
 		onInit: function () {
 			var oViewModel = new JSONModel({
 				currency: "EUR"
 			});
 			this.getView().setModel(oViewModel, "view");
 		},
-		onFilterInvoices: function (oEvent) {
 
+		onFilterInvoices: function (oEvent) {
 			// build filter array
 			var aFilter = [];
 			var sQuery = oEvent.getParameter("query");
@@ -29,6 +31,7 @@ sap.ui.define([
 			var oBinding = oList.getBinding("items");
 			oBinding.filter(aFilter);
 		},
+
 		onPress: function (oEvent) {
 			var oItem = oEvent.getSource();
 			var oRouter = this.getOwnerComponent().getRouter();
@@ -37,4 +40,5 @@ sap.ui.define([
 			});
 		}
 	});
+
 });

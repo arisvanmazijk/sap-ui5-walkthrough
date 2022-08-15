@@ -3,28 +3,30 @@ sap.ui.define([
 	"sap/m/RatingIndicator",
 	"sap/m/Label",
 	"sap/m/Button"
-
 ], function (Control, RatingIndicator, Label, Button) {
 	"use strict";
+
 	return Control.extend("sap.ui.demo.walkthrough.control.ProductRating", {
-		metadata : {
-			properties : {
-				value: 	{type : "float", defaultValue : 0}
+
+		metadata: {
+			properties: {
+				value: {type: "float", defaultValue: 0}
 			},
-			aggregations : {
-				_rating : {type : "sap.m.RatingIndicator", multiple: false, visibility : "hidden"},
-				_label : {type : "sap.m.Label", multiple: false, visibility : "hidden"},
-				_button : {type : "sap.m.Button", multiple: false, visibility : "hidden"}
+			aggregations: {
+				_rating: {type: "sap.m.RatingIndicator", multiple: false, visibility: "hidden"},
+				_label: {type: "sap.m.Label", multiple: false, visibility: "hidden"},
+				_button: {type: "sap.m.Button", multiple: false, visibility: "hidden"}
 			},
-			events : {
-				change : {
-					parameters : {
-						value : {type : "int"}
+			events: {
+				change: {
+					parameters: {
+						value: {type: "int"}
 					}
 				}
 			}
 		},
-		init : function () {
+
+		init: function () {
 			this.setAggregation("_rating", new RatingIndicator({
 				value: this.getValue(),
 				iconSize: "2rem",
@@ -55,7 +57,7 @@ sap.ui.define([
 			this.getAggregation("_button").setEnabled(true);
 		},
 
-		_onRate : function (oEvent) {
+		_onRate: function (oEvent) {
 			var oRessourceBundle = this.getModel("i18n").getResourceBundle();
 			var fValue = oEvent.getParameter("value");
 
@@ -65,7 +67,7 @@ sap.ui.define([
 			this.getAggregation("_label").setDesign("Bold");
 		},
 
-		_onSubmit : function (oEvent) {
+		_onSubmit: function (oEvent) {
 			var oResourceBundle = this.getModel("i18n").getResourceBundle();
 
 			this.getAggregation("_rating").setEnabled(false);
@@ -75,14 +77,18 @@ sap.ui.define([
 				value: this.getValue()
 			});
 		},
-		renderer : function (oRm, oControl) {
-			oRm.openStart("div", oControl);
-			oRm.class("myAppDemoWTProductRating");
-			oRm.openEnd();
-			oRm.renderControl(oControl.getAggregation("_rating"));
-			oRm.renderControl(oControl.getAggregation("_label"));
-			oRm.renderControl(oControl.getAggregation("_button"));
-			oRm.close("div");
+
+		renderer: function (oRM, oControl) {
+			oRM.write("<div");
+			oRM.writeControlData(oControl);
+			oRM.addClass("myAppDemoWTProductRating");
+			oRM.writeClasses();
+			oRM.write(">");
+			oRM.renderControl(oControl.getAggregation("_rating"));
+			oRM.renderControl(oControl.getAggregation("_label"));
+			oRM.renderControl(oControl.getAggregation("_button"));
+			oRM.write("</div>");
 		}
 	});
+
 });

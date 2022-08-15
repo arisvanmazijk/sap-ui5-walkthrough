@@ -1,45 +1,40 @@
 sap.ui.define([
-    "sap/ui/core/UIComponent",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/Device",
-    "sap/m/IllustrationPool"
-], function (UIComponent, JSONModel, Device, IllustrationPool) {
-    "use strict";
-    return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
-        metadata: {
-            interfaces: ["sap.ui.core.IAsyncContentCreation"],
-            manifest: "json"
-        },
-        init: function () {
-            // call the init function of the parent
-            UIComponent.prototype.init.apply(this, arguments);
-            // set data model
-            var oData = {
-                recipient: {
-                    name: "World"
-                }
-            };
-            var oModel = new JSONModel(oData);
-            this.setModel(oModel);
+	"sap/ui/core/UIComponent",
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/Device"
+], function (UIComponent, JSONModel, Device) {
+	"use strict";
 
-            // set device model
-            var oDeviceModel = new JSONModel(Device);
-            oDeviceModel.setDefaultBindingMode("OneWay");
-            this.setModel(oDeviceModel, "device");
+	return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
 
-            // create the views based on the url/hash
-            this.getRouter().initialize();
+		metadata: {
+			interfaces: ["sap.ui.core.IAsyncContentCreation"],
+			manifest: "json"
+		},
 
-            // var oTntSet = {
-            //     setFamily: "tnt",
-            //     setURI: sap.ui.require.toUrl("sap/tnt/themes/base/illustrations")
-            // };
-    
-            // // register tnt illustration set
-            // IllustrationPool.registerIllustrationSet(oTntSet, false);
-        },
+		init: function () {
+			// call the init function of the parent
+			UIComponent.prototype.init.apply(this, arguments);
 
-        getContentDensityClass : function () {
+			// set data model
+			var oData = {
+				recipient: {
+					name: "World"
+				}
+			};
+			var oModel = new JSONModel(oData);
+			this.setModel(oModel);
+
+			// set device model
+			var oDeviceModel = new JSONModel(Device);
+			oDeviceModel.setDefaultBindingMode("OneWay");
+			this.setModel(oDeviceModel, "device");
+
+			// create the views based on the url/hash
+			this.getRouter().initialize();
+		},
+
+		getContentDensityClass : function () {
 			if (!this._sContentDensityClass) {
 				if (!Device.support.touch) {
 					this._sContentDensityClass = "sapUiSizeCompact";
@@ -49,5 +44,7 @@ sap.ui.define([
 			}
 			return this._sContentDensityClass;
 		}
-    });
+
+	});
+
 });

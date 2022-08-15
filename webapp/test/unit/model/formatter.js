@@ -9,7 +9,7 @@ sap.ui.define([
 	QUnit.module("Formatting functions", {
 		beforeEach: function () {
 			this._oResourceModel = new ResourceModel({
-				bundleUrl: sap.ui.require.toUrl("sap/ui/demo/walkthrough") + "/i18n/i18n.properties"
+				bundleUrl: sap.ui.require.toUrl("sap/ui/demo/walkthrough/i18n/i18n.properties")
 			});
 		},
 		afterEach: function () {
@@ -21,12 +21,8 @@ sap.ui.define([
 	QUnit.test("Should return the translated texts", function (assert) {
 
 		// Arrange
-		// this.stub() does not support chaining and always returns the right data
-		// even if a wrong or empty parameter is passed.
-		var oModel = this.stub();
-		oModel.withArgs("i18n").returns(this._oResourceModel);
 		var oViewStub = {
-			getModel: oModel
+			getModel: this.stub().withArgs("i18n").returns(this._oResourceModel)
 		};
 		var oControllerStub = {
 			getView: this.stub().returns(oViewStub)
