@@ -30,13 +30,13 @@ sap.ui.define([
             // create the views based on the url/hash
             this.getRouter().initialize();
 
-            var oTntSet = {
-                setFamily: "tnt",
-                setURI: sap.ui.require.toUrl("sap/tnt/themes/base/illustrations")
-            };
+            // var oTntSet = {
+            //     setFamily: "tnt",
+            //     setURI: sap.ui.require.toUrl("sap/tnt/themes/base/illustrations")
+            // };
     
-            // register tnt illustration set
-            IllustrationPool.registerIllustrationSet(oTntSet, false);
+            // // register tnt illustration set
+            // IllustrationPool.registerIllustrationSet(oTntSet, false);
         },
 
         getContentDensityClass : function () {

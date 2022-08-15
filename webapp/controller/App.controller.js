@@ -9,103 +9,103 @@ sap.ui.define([
       onInit: function () {
          this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 
-         var oView = this.getView();
+         // var oView = this.getView();
 
-         this.oModel = new JSONModel({
-            bIsExpiring: true,
-            iSecondsLeft: 99
-         });
+         // this.oModel = new JSONModel({
+         //    bIsExpiring: true,
+         //    iSecondsLeft: 99
+         // });
 
-         oView.setModel(this.oModel);
+         // oView.setModel(this.oModel);
 
-         var invoiceModel = this.getOwnerComponent().getModel("invoice");
-         invoiceModel.attachRequestCompleted(this.resetTimeOutDialog, this);
+         // var invoiceModel = this.getOwnerComponent().getModel("invoice");
+         // invoiceModel.attachRequestCompleted(this.resetTimeOutDialog, this);
       },
 
-      setTimeOutDialog: function () {
-         var self = this;
-         this.intervalHandle = setInterval(function () {
-            self.handleOpenDialog();
-         }, 15000);
-      },
+      // setTimeOutDialog: function () {
+      //    var self = this;
+      //    this.intervalHandle = setInterval(function () {
+      //       self.handleOpenDialog();
+      //    }, 15000);
+      // },
 
-      resetTimeOutDialog: function () {
-         clearInterval(this.intervalHandle);
-         this.setTimeOutDialog();
-      },
+      // resetTimeOutDialog: function () {
+      //    clearInterval(this.intervalHandle);
+      //    this.setTimeOutDialog();
+      // },
 
-      handleOpenDialog: function () {
-         if (!this._oDialog) {
-            Fragment.load({
-               name: "sap.ui.demo.walkthrough.view.TimeoutDialog",
-               controller: this
-            }).then(function (oDialog) {
-               this._oDialog = oDialog;
+      // handleOpenDialog: function () {
+      //    if (!this._oDialog) {
+      //       Fragment.load({
+      //          name: "sap.ui.demo.walkthrough.view.TimeoutDialog",
+      //          controller: this
+      //       }).then(function (oDialog) {
+      //          this._oDialog = oDialog;
 
-               this.getView().addDependent(this._oDialog);
+      //          this.getView().addDependent(this._oDialog);
 
-               this.onDialogOpen();
-            }.bind(this));
-         } else {
-            this.onDialogOpen();
-         }
-      },
+      //          this.onDialogOpen();
+      //       }.bind(this));
+      //    } else {
+      //       this.onDialogOpen();
+      //    }
+      // },
 
-      onDialogOpen: function () {
-         this._oDialog.open();
-         this._startCounter();
-      },
+      // onDialogOpen: function () {
+      //    this._oDialog.open();
+      //    this._startCounter();
+      // },
 
-      onDialogClose: function () {
-         this._oDialog.close();
-         this._stopCounter();
-      },
+      // onDialogClose: function () {
+      //    this._oDialog.close();
+      //    this._stopCounter();
+      // },
 
-      onContinueWork: function () {
-         this.getOwnerComponent().getModel("invoice").refresh();
-         this._oDialog.close();
-         this._stopCounter();        
-      },
+      // onContinueWork: function () {
+      //    this.getOwnerComponent().getModel("invoice").refresh();
+      //    this._oDialog.close();
+      //    this._stopCounter();        
+      // },
 
-      onExit: function () {
-         this._stopCounter();
-      },
+      // onExit: function () {
+      //    this._stopCounter();
+      // },
 
-      _decrementCounter: function () {
-         this._onUpdateStatus();
-         if (this.iSeconds === 0) {
-            this._stopCounter();
-            this._onCounterEnd();
-            return;
-         }
-         this.iSeconds--;
-      },
+      // _decrementCounter: function () {
+      //    this._onUpdateStatus();
+      //    if (this.iSeconds === 0) {
+      //       this._stopCounter();
+      //       this._onCounterEnd();
+      //       return;
+      //    }
+      //    this.iSeconds--;
+      // },
 
-      _startCounter: function () {
-         this.iSeconds = 5;
-         this._onCounterStart();
-         clearInterval(this.oTimer);
-         this.oTimer = setInterval(this._decrementCounter.bind(this), 1000);
-      },
+      // _startCounter: function () {
+      //    this.iSeconds = 5;
+      //    this._onCounterStart();
+      //    clearInterval(this.oTimer);
+      //    this.oTimer = setInterval(this._decrementCounter.bind(this), 1000);
+      // },
 
-      _stopCounter: function () {
-         clearInterval(this.oTimer);
-         this.oTimer = null;
-      },
+      // _stopCounter: function () {
+      //    clearInterval(this.oTimer);
+      //    this.oTimer = null;
+      // },
 
-      _onUpdateStatus: function () {
-         this.oModel.setProperty('/iSecondsLeft', this.iSeconds);
-      },
+      // _onUpdateStatus: function () {
+      //    this.oModel.setProperty('/iSecondsLeft', this.iSeconds);
+      // },
 
-      _onCounterStart: function () {
-         this.oModel.setProperty('/bIsExpiring', true);
-         this.oModel.setProperty('/iSecondsLeft', this.iSeconds);
-         this.iSeconds--;
-      },
+      // _onCounterStart: function () {
+      //    this.oModel.setProperty('/bIsExpiring', true);
+      //    this.oModel.setProperty('/iSecondsLeft', this.iSeconds);
+      //    this.iSeconds--;
+      // },
 
-      _onCounterEnd: function () {
-         this.oModel.setProperty('/bIsExpiring', false);
-      }
+      // _onCounterEnd: function () {
+      //    this.oModel.setProperty('/bIsExpiring', false);
+      // }
 
    });
 });
