@@ -17,18 +17,10 @@ sap.ui.define([
 			// call the init function of the parent
 			UIComponent.prototype.init.apply(this, arguments);
 
-			var oTntSet = {
-				setFamily: "tnt",
-				setURI: sap.ui.require.toUrl("sap/tnt/themes/base/illustrations")
-				}
-			
-			// register tnt illustration set
-			IllustrationPool.registerIllustrationSet(oTntSet, false)
-
 			// set data model
 			var oData = {
 				recipient: {
-					name: "World"
+					name: "Aris"
 				}
 			};
 			var oModel = new JSONModel(oData);
@@ -41,6 +33,14 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
+
+			var oTntSet = {
+				setFamily: "tnt",
+				setURI: sap.ui.require.toUrl("sap/tnt/themes/base/illustrations")
+				}
+			
+			// register tnt illustration set
+			IllustrationPool.registerIllustrationSet(oTntSet, false)			
 		},
 
 		getContentDensityClass : function () {

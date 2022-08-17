@@ -1,7 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/ui/core/Fragment",
+	"sap/m/IllustrationPool"
+], function (Controller, JSONModel, Fragment, IllustrationPool) {
 	"use strict";
 
 	return Controller.extend("sap.ui.demo.walkthrough.controller.App", {
@@ -16,9 +18,24 @@ sap.ui.define([
 				iSecondsLeft: 99
 			});
 
-			oView.setModel(this.oModel);
+			oView.setModel(this.oModel, "timeout");
+
+			var invoiceModel = this.getOwnerComponent().getModel("invoice");
+			invoiceModel.attachRequestCompleted(this.resetTimeOutDialog, this);			
 
 		},
+
+		setTimeOutDialog: function () {
+			var self = this;
+			this.intervalHandle = setInterval(function () {
+			   self.handleOpenDialog();
+			}, 10000);
+		 },
+   
+		 resetTimeOutDialog: function () {
+			clearInterval(this.intervalHandle);
+			this.setTimeOutDialog();
+		 },
 
 		handleOpenDialog : function () {
 			if (!this._oDialog) {
@@ -47,11 +64,14 @@ sap.ui.define([
 			this._stopCounter();
 		},
 
+		onContinueWork: function () {
+			this.getOwnerComponent().getModel("invoice").refresh();
+			this._oDialog.close();
+			this._stopCounter();        
+		 },		
+
 		onSignIn: function () {
 			this.onDialogClose();
-
-			// Insert your Sign In Logic here...
-
 		},
 
 		onExit: function () {
@@ -69,7 +89,7 @@ sap.ui.define([
 		},
 
 		_startCounter : function () {
-			this.iSeconds = this.getView().byId("expirationInput").getValue();
+			this.iSeconds = 5;
 			this._onCounterStart();
 			clearInterval(this.oTimer);
 			this.oTimer = setInterval(this._decrementCounter.bind(this), 1000);
@@ -81,17 +101,17 @@ sap.ui.define([
 		},
 
 		_onUpdateStatus : function () {
-			this.oModel.setProperty('/iSecondsLeft', this.iSeconds);
+			this.getView().getModel("timeout").setProperty('/iSecondsLeft', this.iSeconds);
 		},
 
 		_onCounterStart : function () {
-			this.oModel.setProperty('/bIsExpiring', true);
-			this.oModel.setProperty('/iSecondsLeft', this.iSeconds);
+			this.getView().getModel("timeout").setProperty('/bIsExpiring', true);
+			this.getView().getModel("timeout").setProperty('/iSecondsLeft', this.iSeconds);
 			this.iSeconds--;
 		},
 
 		_onCounterEnd : function () {
-			this.oModel.setProperty('/bIsExpiring', false);
+			this.getView().getModel("timeout").setProperty('/bIsExpiring', false);
 		}		
 
 	});
