@@ -1,21 +1,17 @@
 {
-  "name": "sap.m.tutorial.walkthrough",
+  "name": "sap-ui5-walkthrough-v4",
   "version": "1.0.0",
-  "author": "SAP SE",
   "description": "",
-  "scripts": {
-    "start": "ui5 serve",
-    "build": "ui5 build"
-  },
-  "devDependencies": {
-    "@ui5/cli": "^2.14.10"
-  },
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/arisvanmazijk/sap-ui5-walkthrough.git"
   },
   "keywords": [],
+  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/arisvanmazijk/sap-ui5-walkthrough/issues"

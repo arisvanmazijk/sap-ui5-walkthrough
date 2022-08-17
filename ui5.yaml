@@ -1,6 +1,6 @@
 specVersion: '2.6'
 metadata:
-  name: sap.m.tutorial.walkthrough
+  name: sap-ui5-walkthrough-v4
 type: application
 framework:
   name: OpenUI5
