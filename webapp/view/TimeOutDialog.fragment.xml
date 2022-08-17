@@ -9,12 +9,7 @@
 			<Button
 				visible="{timeout>/bIsExpiring}"
 				text="{i18n>timeOutContinueWorking}"
-				press="onDialogClose"
-				type="Emphasized" />
-			<Button
-				visible="{= !${timeout>/bIsExpiring} }"
-				text="{i18n>timeOutSignIn}"
-				press="onSignIn"
+				press="onContinueWork"
 				type="Emphasized" />
 			<Button
 				visible="{= !${timeout>/bIsExpiring} }"

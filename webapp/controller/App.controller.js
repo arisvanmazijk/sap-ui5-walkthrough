@@ -62,6 +62,7 @@ sap.ui.define([
 		onDialogClose : function () {
 			this._oDialog.close();
 			this._stopCounter();
+			this.setTimeOutDialog();
 		},
 
 		onContinueWork: function () {
@@ -69,10 +70,6 @@ sap.ui.define([
 			this._oDialog.close();
 			this._stopCounter();        
 		 },		
-
-		onSignIn: function () {
-			this.onDialogClose();
-		},
 
 		onExit: function () {
 			this._stopCounter();
@@ -83,6 +80,7 @@ sap.ui.define([
 			if (this.iSeconds === 0) {
 				this._stopCounter();
 				this._onCounterEnd();
+				clearInterval(this.intervalHandle);
 				return;
 			}
 			this.iSeconds--;
