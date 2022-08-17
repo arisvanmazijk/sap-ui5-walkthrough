@@ -1,0 +1,31 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		title="{i18n>timeOutDialogTitle}"
+		contentWidth="20rem"
+		verticalScrolling="false">
+		<buttons>
+			<Button
+				visible="{/bIsExpiring}"
+				text="{i18n>timeOutContinueWorking}"
+				press="onDialogClose"
+				type="Emphasized" />
+			<Button
+				visible="{= !${/bIsExpiring} }"
+				text="{i18n>timeOutSignIn}"
+				press="onSignIn"
+				type="Emphasized" />
+			<Button
+				visible="{= !${/bIsExpiring} }"
+				text="{i18n>timeOutClose}"
+				press="onDialogClose"/>
+		</buttons>
+		<IllustratedMessage
+			title="{= ${/bIsExpiring} ? ${i18n>timeOutTitleExpiring} : ${i18n>timeOutTitleExpired} }"
+			description="{= ${/bIsExpiring} ?
+				${i18n>timeOutDescriptionExpiringBegin} + ${/iSecondsLeft} + ${i18n>timeOutDescriptionExpiringEnd} :
+				${i18n>timeOutDescriptionExpired} }"
+			illustrationType="{= ${/bIsExpiring} ? 'tnt-SessionExpiring' : 'tnt-SessionExpired' }" />
+	</Dialog>
+</core:FragmentDefinition>

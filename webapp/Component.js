@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/Device"
-], function (UIComponent, JSONModel, Device) {
+	"sap/ui/Device",
+	"sap/m/IllustrationPool"
+], function (UIComponent, JSONModel, Device, IllustrationPool) {
 	"use strict";
 
 	return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
@@ -15,6 +16,14 @@ sap.ui.define([
 		init: function () {
 			// call the init function of the parent
 			UIComponent.prototype.init.apply(this, arguments);
+
+			var oTntSet = {
+				setFamily: "tnt",
+				setURI: sap.ui.require.toUrl("sap/tnt/themes/base/illustrations")
+				}
+			
+			// register tnt illustration set
+			IllustrationPool.registerIllustrationSet(oTntSet, false)
 
 			// set data model
 			var oData = {
@@ -44,7 +53,6 @@ sap.ui.define([
 			}
 			return this._sContentDensityClass;
 		}
-
 	});
 
 });
