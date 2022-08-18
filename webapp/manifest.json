@@ -22,6 +22,13 @@
 				"settings": {
 					"odataVersion": "2.0"
 				}
+			},
+			"peopleRemote": {
+				"uri": "https://services.odata.org/TripPinRESTierServic/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
 			}
 		}
 	},
@@ -63,6 +70,14 @@
 			},
 			"invoice": {
 				"dataSource": "invoiceRemote"
+			},
+			"people": {
+				"dataSource": "peopleRemote",
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"groupId": "$direct"
+				}
 			}
 		},
 		"resources": {

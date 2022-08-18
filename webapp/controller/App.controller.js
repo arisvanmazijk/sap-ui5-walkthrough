@@ -20,8 +20,15 @@ sap.ui.define([
 
 			oView.setModel(this.oModel, "timeout");
 
-			var invoiceModel = this.getOwnerComponent().getModel("invoice");
-			invoiceModel.attachRequestCompleted(this.resetTimeOutDialog, this);			
+			//var invoiceModel = this.getOwnerComponent().getModel("invoice");
+			//invoiceModel.attachRequestCompleted(this.resetTimeOutDialog, this);	
+			
+			var peopleModel = this.getOwnerComponent().getModel("people");
+			peopleModel.attachSessionTimeout(this.resetTimeOutDialog, this);
+
+			var promise = peopleModel.getMetaModel().requestObject("/");
+
+			promise.catch(this.setTimeOutDialog);
 
 		},
 
