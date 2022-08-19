@@ -24,7 +24,7 @@
 				}
 			},
 			"peopleRemote": {
-				"uri": "https://services.odata.org/TripPinRESTierServic/",
+				"uri": "https://services.odata.org/TripPinRESTierService/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "4.0"

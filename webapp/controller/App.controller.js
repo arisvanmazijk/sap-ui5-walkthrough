@@ -28,15 +28,15 @@ sap.ui.define([
 
 			var promise = peopleModel.getMetaModel().requestObject("/");
 
-			promise.catch(this.setTimeOutDialog);
+			promise.then(this.setTimeOutDialog);
 
 		},
 
 		setTimeOutDialog: function () {
-			var self = this;
-			this.intervalHandle = setInterval(function () {
-			   self.handleOpenDialog();
-			}, 10000);
+			// var self = this;
+			// this.intervalHandle = setInterval(function () {
+			//    self.handleOpenDialog();
+			// }, 10000);
 		 },
    
 		 resetTimeOutDialog: function () {

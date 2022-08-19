@@ -20,7 +20,7 @@ sap.ui.define([
 			var aFilter = [];
 			var sQuery = oEvent.getParameter("query");
 			if (sQuery) {
-				aFilter.push(new Filter("Username", FilterOperator.Contains, sQuery));
+				aFilter.push(new Filter("UserName", FilterOperator.Contains, sQuery));
 			}
 
 			// filter binding
