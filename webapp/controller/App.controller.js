@@ -24,11 +24,11 @@ sap.ui.define([
 			//invoiceModel.attachRequestCompleted(this.resetTimeOutDialog, this);	
 			
 			var peopleModel = this.getOwnerComponent().getModel("people");
-			peopleModel.attachSessionTimeout(this.resetTimeOutDialog, this);
+			// peopleModel.attachSessionTimeout(this.resetTimeOutDialog, this);
+			// var promise = peopleModel.getMetaModel().requestObject("/");
+			// promise.then(this.setTimeOutDialog);
 
-			var promise = peopleModel.getMetaModel().requestObject("/");
-
-			promise.then(this.setTimeOutDialog);
+			var bindings = peopleModel.getAllBindings();
 
 		},
 

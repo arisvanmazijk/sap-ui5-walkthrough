@@ -12,7 +12,8 @@ sap.ui.define([
 		formatter: formatter,
 
 		onInit: function () {
-
+			var peopleModel = this.getOwnerComponent().getModel("people");
+			var bindings = peopleModel.getAllBindings();
 		},
 
 		onFilterInvoices: function (oEvent) {
