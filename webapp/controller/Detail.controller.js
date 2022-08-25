@@ -22,7 +22,7 @@ sap.ui.define([
 			this.byId("rating").reset();
 			this.getView().bindElement({
 				path: "/" + window.decodeURIComponent(oEvent.getParameter("arguments").invoicePath),
-				model: "invoice"
+				model: "people"
 			});
 		},
 
